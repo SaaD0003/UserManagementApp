@@ -1,0 +1,39 @@
+﻿@page
+@model UserManagementApp.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="container">
+    <h2>User Registry</h2>
+    <div class="toolbar">
+        <button class="btn btn-danger" id="blockBtn">Block</button>
+        <button class="btn btn-secondary" id="unblockBtn">Unblock</button>
+        <button class="btn btn-secondary" id="deleteBtn">Delete</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Last Login</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td><input type="checkbox" class="user-checkbox" value="@user.Id"></td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.LastLoginTime</td> <!-- Assuming LastLoginTime is a property in ApplicationUser -->
+                    <td>@(user.LockoutEnabled ? "Blocked" : "Active")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+// JavaScript code for handling user actions (block, unblock, delete) can go here
+</script>
