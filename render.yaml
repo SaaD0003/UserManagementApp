@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: your-service-name
+    env: dotnet
+    plan: free
+    buildCommand: "dotnet publish -c Release -o out"
+    startCommand: "dotnet out/your-app-name.dll"
+    envVars:
+      - key: ConnectionStrings__DefaultConnection
+        value: <your-postgres-connection-string>
+buildCommand: "dotnet restore && dotnet publish -c Release -o out"
